@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smoky Sequential Effect</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .smoky {
+            display: flex;
+        }
+
+        .smoky span {
+            display: block;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 8rem;
+            font-weight: 900;
+            color: #fff;
+            text-transform: uppercase;
+            /* A mágica do retorno está aqui: transição suave para todas as propriedades */
+            transition: all 1s ease-in-out; 
+            filter: blur(0);
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Efeito ao passar o mouse */
+        .smoky:hover span {
+            filter: blur(20px);
+            opacity: 0;
+            transform: translateY(-100px) rotate(45deg) scale(2);
+        }
+
+        /* Controle Individual de Delay (Ida e Volta) */
+        
+        /* Quando o mouse ENTRA, o primeiro span sai logo, o segundo depois, etc. */
+        /* Quando o mouse SAI, o delay também se aplica na volta! */
+        
+        .smoky span:nth-child(1) { transition-delay: 0.1s; }
+        .smoky span:nth-child(2) { transition-delay: 0.2s; }
+        .smoky span:nth-child(3) { transition-delay: 0.3s; }
+        .smoky span:nth-child(4) { transition-delay: 0.4s; }
+        .smoky span:nth-child(5) { transition-delay: 0.5s; }
+
+        /* OPCIONAL: Se quiser que na VOLTA a ordem seja inversa (o 'y' volta primeiro) */
+        /*
+        .smoky:not(:hover) span:nth-child(1) { transition-delay: 0.5s; }
+        .smoky:not(:hover) span:nth-child(2) { transition-delay: 0.4s; }
+        .smoky:not(:hover) span:nth-child(3) { transition-delay: 0.3s; }
+        .smoky:not(:hover) span:nth-child(4) { transition-delay: 0.2s; }
+        .smoky:not(:hover) span:nth-child(5) { transition-delay: 0.1s; }
+        */
+
+    </style>
+</head>
+<body>
+
+    <div class="smoky">
+        <span>s</span>
+        <span>m</span>
+        <span>o</span>
+        <span>k</span>
+        <span>y</span>
+    </div>
+
+</body>
+</html>
